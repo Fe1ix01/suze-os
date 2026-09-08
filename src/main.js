@@ -147,3 +147,13 @@ renderState();
 if(storageReadFailed) showDataStatus('本地数据读取失败，已暂停保存。请检查存储权限或导入有效的 V3 备份。',true);
 updateClockAndQuote();
 setInterval(updateClockAndQuote,30000);
+
+// Optional Auth is isolated from all local initialization and event bindings above.
+import('./auth.js').then(({initAuth})=>initAuth()).catch(()=>{
+  const status = document.getElementById('authStatus');
+  status.textContent = '云端登录模块暂时不可用，请刷新重试。本地功能可继续使用。';
+  document.getElementById('openAuth').addEventListener('click',()=>{
+    status.textContent = '云端登录模块加载失败，请检查网络并刷新页面。本地功能可继续使用。';
+  });
+  document.getElementById('openAuth').disabled = false;
+});

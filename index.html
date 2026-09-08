@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Suze OS V3.0 - 个人操作系统" />
+  <link rel="icon" href="data:," />
   <title>Suze OS · Personal System</title>
 </head>
 <body>
@@ -16,7 +17,15 @@
         <a href="#journal">Journal</a>
         <a href="#data">Data</a>
       </nav>
+      <div class="auth-controls" aria-label="账户">
+        <button class="btn small" id="openAuth" type="button" aria-haspopup="dialog" aria-controls="authDialog" disabled>登录</button>
+        <div class="auth-account" id="authAccount" hidden>
+          <div class="auth-identity"><span class="auth-connected">已连接云端</span><span class="auth-email" id="authEmail"></span></div>
+          <button class="btn small ghost" id="signOut" type="button">退出</button>
+        </div>
+      </div>
     </div>
+    <p class="wrap auth-status" id="authStatus" role="status" aria-live="polite"></p>
   </header>
 
   <main id="top">
@@ -175,6 +184,23 @@
           <p id="dataStatus" class="data-status" role="status" aria-live="polite"></p>
           <div class="storage-note">数据保存在当前浏览器，暂不支持跨设备同步。仅支持 V3 备份；旧版数据仍保留，旧版备份请在旧版页面恢复。</div>
         </div>
+        <div class="panel cloud-state-panel" id="cloudStatePanel" aria-labelledby="cloudStateTitle" aria-busy="false" hidden>
+          <div class="panel-head"><div><h3 id="cloudStateTitle">云端读写测试</h3><div class="panel-sub">仅手动保存与读取预览，本地数据仍为主数据源。</div></div></div>
+          <div class="data-actions">
+            <button class="btn" id="checkCloudState" type="button">查看云端状态</button>
+            <button class="btn" id="uploadCloudState" type="button">上传当前本地数据</button>
+            <button class="btn ghost" id="previewCloudState" type="button">从云端读取预览</button>
+          </div>
+          <p class="cloud-existence">是否存在云端数据：<strong id="cloudStateExists">尚未读取</strong></p>
+          <dl class="cloud-state-preview" id="cloudStatePreview" hidden>
+            <div><dt>schema_version</dt><dd id="cloudSchemaVersion">—</dd></div>
+            <div><dt>updated_at</dt><dd id="cloudUpdatedAt">—</dd></div>
+            <div><dt>core_state</dt><dd id="cloudCoreState">—</dd></div>
+            <div><dt>job_radar_state</dt><dd id="cloudJobRadarState">—</dd></div>
+          </dl>
+          <p class="data-status" id="cloudStateStatus" role="status" aria-live="polite"></p>
+          <div class="storage-note">读取只展示预览，不覆盖本地数据。上传当前已保存的本地数据，并替换当前账户的云端快照；未保存的表单内容不包含在内，未在本地保存过的模块以空对象保存。</div>
+        </div>
       </div>
     </section>
   </main>
@@ -192,6 +218,21 @@
     </div>
   </dialog>
 
+  <dialog class="auth-dialog" id="authDialog" aria-labelledby="authTitle" aria-describedby="authDescription">
+    <div class="auth-dialog-head">
+      <h3 id="authTitle">登录 Suze OS</h3>
+      <button class="btn small ghost" id="closeAuth" type="button">关闭</button>
+    </div>
+    <p id="authDescription">使用已有账户登录。数据仍以本地为主，云端操作需手动触发。</p>
+    <form id="authForm" aria-busy="false" novalidate>
+      <label for="authEmailInput">Email</label>
+      <input id="authEmailInput" name="email" type="email" autocomplete="username" placeholder="you@example.com" required autofocus />
+      <label for="authPasswordInput">Password</label>
+      <input id="authPasswordInput" name="password" type="password" autocomplete="current-password" required />
+      <p class="auth-error" id="authError" role="alert" aria-live="assertive"></p>
+      <button class="btn primary" id="authSubmit" type="submit">登录</button>
+    </form>
+  </dialog>
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>
