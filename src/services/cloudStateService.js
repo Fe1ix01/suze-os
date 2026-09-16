@@ -61,6 +61,21 @@ export async function saveCloudState(coreState,jobRadarState,{isCurrent=()=>true
   if(![coreState,jobRadarState].every(value=>value !== null && typeof value === 'object' && !Array.isArray(value))){
     throw new CloudStateError('本地快照格式无效，已取消上传。');
   }
+  const emptyCore = Object.keys(coreState).length === 0;
+  const emptyRadar = Object.keys(jobRadarState).length === 0;
+  if(emptyCore && emptyRadar){
+    throw new CloudStateError('本地没有可上传的数据，已取消上传，避免覆盖已有云端快照。');
+  }
+  if(emptyCore || emptyRadar){
+    const {data:existing,error:readError,status:readStatus} = await client.from('user_state')
+      .select('core_state,job_radar_state').eq('user_id',userId).maybeSingle();
+    checkResult(readError,readStatus);
+    if(!isCurrent()) throw new CloudStateError('账户已变化，已取消此次上传。请重新确认后再试。');
+    const hasData = value=>value !== null && typeof value === 'object' && Object.keys(value).length > 0;
+    if((emptyCore && hasData(existing?.core_state)) || (emptyRadar && hasData(existing?.job_radar_state))){
+      throw new CloudStateError('本地缺少云端已有的部分数据，已取消上传，避免空数据覆盖云端。请先核对云端预览和本地数据。');
+    }
+  }
   const {data,error,status} = await client.from('user_state').upsert({
     user_id: userId,
     schema_version: CLOUD_SCHEMA_VERSION,
