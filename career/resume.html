@@ -3,276 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>简历库 · Suze OS</title>
+  <title>简历版本模板 · Suze Flow</title>
   <link rel="stylesheet" href="career.css">
-  <style>
-    .resume-manager {
-      margin-bottom:16px;
-      padding:16px;
-      display:grid;
-      gap:14px;
-      border:1px solid rgba(23,32,43,.07);
-      border-radius:16px;
-      background:rgba(255,255,255,.45);
-    }
-
-    .resume-manager-head {
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .resume-manager-title {
-      margin:0;
-      font-size:16px;
-      letter-spacing:-.2px;
-    }
-
-    .resume-manager-copy {
-      margin:4px 0 0;
-      color:var(--muted);
-      font-size:11px;
-    }
-
-    .resume-filter-grid {
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 180px;
-      gap:12px;
-    }
-
-    .resume-filter-field {
-      min-width:0;
-      display:grid;
-      gap:7px;
-    }
-
-    .resume-filter-field span,
-    .resume-version-label {
-      color:#566371;
-      font-size:10px;
-      font-weight:800;
-    }
-
-    .resume-filter-field input,
-    .resume-filter-field select {
-      width:100%;
-      min-height:42px;
-      padding:10px 12px;
-      border:1px solid rgba(23,32,43,.08);
-      border-radius:11px;
-      background:rgba(255,255,255,.72);
-      color:var(--text);
-      font:inherit;
-      font-size:12px;
-      outline:none;
-    }
-
-    .resume-filter-field select {
-      cursor:pointer;
-    }
-
-    .resume-version-groups {
-      display:grid;
-      gap:8px;
-    }
-
-    .resume-version-tags,
-    .advantage-tags {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .resume-version-tag,
-    .advantage-tag {
-      min-height:32px;
-      padding:7px 11px;
-      display:inline-flex;
-      align-items:center;
-      border:1px solid rgba(23,32,43,.08);
-      border-radius:999px;
-      background:rgba(255,255,255,.66);
-      color:#566371;
-      font-size:10px;
-      font-weight:800;
-    }
-
-    .resume-version-tag {
-      cursor:pointer;
-      font:inherit;
-      outline:none;
-    }
-
-    .resume-version-tag-active,
-    .advantage-tag {
-      border-color:rgba(22,201,195,.24);
-      background:rgba(22,201,195,.10);
-      color:var(--accent-deep);
-    }
-
-    .resume-card-head {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .resume-status {
-      flex:0 0 auto;
-    }
-
-    .resume-status-select {
-      min-height:36px;
-      padding:7px 30px 7px 12px;
-      border:1px solid rgba(22,201,195,.24);
-      border-radius:999px;
-      background:rgba(22,201,195,.12);
-      color:var(--accent-deep);
-      cursor:pointer;
-      font:inherit;
-      font-size:11px;
-      font-weight:800;
-      outline:none;
-    }
-
-    .resume-section {
-      margin-top:18px;
-      padding-top:18px;
-      border-top:1px solid rgba(23,32,43,.07);
-    }
-
-    .resume-section-head {
-      margin-bottom:14px;
-    }
-
-    .resume-section-kicker {
-      color:var(--accent-deep);
-      font-size:9px;
-      font-weight:800;
-      letter-spacing:1.1px;
-    }
-
-    .resume-section h3 {
-      margin:3px 0 0;
-      font-size:16px;
-      letter-spacing:-.2px;
-    }
-
-    .advantage-wrap {
-      display:grid;
-      gap:9px;
-    }
-
-    .resume-filter-field input:focus,
-    .resume-filter-field select:focus,
-    .resume-version-tag:focus-visible,
-    .resume-status-select:focus {
-      border-color:rgba(22,201,195,.46);
-      box-shadow:0 0 0 3px rgba(22,201,195,.09);
-    }
-
-    .sr-only {
-      position:absolute;
-      width:1px;
-      height:1px;
-      padding:0;
-      margin:-1px;
-      overflow:hidden;
-      clip:rect(0,0,0,0);
-      white-space:nowrap;
-      border:0;
-    }
-
-    @media(max-width:768px) {
-      .resume-manager {
-        padding:14px;
-      }
-
-      .resume-manager-head,
-      .resume-card-head {
-        align-items:flex-start;
-        flex-direction:column;
-      }
-
-      .resume-filter-grid {
-        grid-template-columns:1fr;
-      }
-
-      .resume-status,
-      .resume-status-select {
-        width:100%;
-      }
-
-      .resume-filter-field input,
-      .resume-filter-field select,
-      .resume-version-tag,
-      .resume-status-select {
-        font-size:16px;
-      }
-    }
-  </style>
 </head>
 <body>
   <header class="career-header">
-    <div class="career-nav">
-      <div class="career-brand">Suze<span>.</span></div>
-      <div class="career-context">CAREER</div>
+    <div class="career-topbar">
+      <a class="career-back" href="../index.html#career">← 返回求职模式</a>
+      <a class="career-brand" href="../index.html#career" aria-label="Suze Flow 求职模式">Suze <span>Flow</span></a>
     </div>
   </header>
-  <main class="career-main tracker-main">
-    <section class="career-panel tracker-panel">
-      <div class="tracker-page-head">
-        <div>
-          <div class="career-eyebrow">CAREER</div>
-          <h1>简历库</h1>
-          <p class="tracker-page-copy">管理不同岗位方向的简历版本。</p>
-        </div>
-        <a class="back-button tracker-back" href="../index.html">返回首页</a>
-      </div>
+  <main class="career-main">
+    <section class="career-panel" aria-labelledby="pageTitle">
+      <div class="career-page-head"><h1 id="pageTitle">简历版本模板</h1><p>梳理不同岗位方向的简历内容。</p></div>
+      <nav class="career-tabs" aria-label="求职内部导航">
+        <a href="jobs.html">岗位</a>
+        <a href="companies.html">公司</a>
+        <a href="resume.html" aria-current="page">简历</a>
+        <a href="interview.html">面试</a>
+        <a href="apply.html">投递</a>
+        <a href="cases.html">案例</a>
+      </nav>
+      <aside class="template-notice" aria-label="模板使用说明"><strong>简历版本模板 · 暂未接入独立保存</strong><p>输入仅用于本页临时整理，刷新或离开页面可能丢失。正式岗位、投递状态和面试记录请在 Job Radar 中管理。</p><a class="career-button" href="jobs.html#jobRecordsTitle">进入 Job Radar →</a></aside>
 
-      <section class="resume-manager" aria-label="简历版本管理">
-        <div class="resume-manager-head">
-          <div>
-            <h2 class="resume-manager-title">简历版本管理</h2>
-            <p class="resume-manager-copy">按岗位方向和使用状态整理不同版本。</p>
-          </div>
-          <div class="record-kicker">VERSION MANAGER</div>
-        </div>
+      <section class="template-directions" aria-label="简历整理方向"><h2>整理方向</h2><p>按目标岗位填写下方模板；这里不提供版本历史或筛选功能。</p><div class="topic-tags"><span>内容运营</span><span>品牌营销</span><span>商务合作</span><span>项目管理</span></div></section>
 
-        <div class="resume-filter-grid">
-          <label class="resume-filter-field">
-            <span>搜索简历版本</span>
-            <input type="search" name="resume-search" placeholder="搜索简历名称、岗位或公司">
-          </label>
-          <label class="resume-filter-field">
-            <span>状态筛选</span>
-            <select name="resume-status-filter">
-              <option>全部状态</option>
-              <option>使用中</option>
-              <option>待优化</option>
-              <option>投递中</option>
-              <option>已废弃</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="resume-version-groups">
-          <div class="resume-version-label">版本分类</div>
-          <div class="resume-version-tags" aria-label="简历版本分类">
-            <button class="resume-version-tag resume-version-tag-active" type="button">全部版本</button>
-            <button class="resume-version-tag" type="button">内容运营</button>
-            <button class="resume-version-tag" type="button">品牌营销</button>
-            <button class="resume-version-tag" type="button">商务合作</button>
-            <button class="resume-version-tag" type="button">项目管理</button>
-          </div>
-        </div>
-      </section>
-
-      <form class="record-card" aria-label="简历版本卡片">
+      <section class="record-card" aria-label="简历版本卡片" data-template="true">
         <div class="record-card-head resume-card-head">
           <div>
-            <div class="record-kicker">RESUME CARD</div>
+            <div class="record-kicker">简历模板</div>
             <h2>简历版本卡片</h2>
           </div>
           <label class="resume-status">
@@ -315,7 +74,7 @@
 
         <section class="resume-section" aria-labelledby="resume-match-title">
           <div class="resume-section-head">
-            <div class="resume-section-kicker">MATCH NOTES</div>
+            <div class="resume-section-kicker">岗位匹配</div>
             <h3 id="resume-match-title">JD 匹配与优势</h3>
           </div>
           <div class="record-grid">
@@ -338,7 +97,7 @@
 
         <section class="resume-section" aria-labelledby="resume-project-title">
           <div class="resume-section-head">
-            <div class="resume-section-kicker">PROJECT EXPERIENCE</div>
+            <div class="resume-section-kicker">项目经历</div>
             <h3 id="resume-project-title">项目经历记录</h3>
           </div>
           <div class="record-grid">
@@ -356,7 +115,7 @@
             </label>
           </div>
         </section>
-      </form>
+      </section>
     </section>
   </main>
 </body>

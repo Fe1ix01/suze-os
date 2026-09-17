@@ -3,183 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>公司库 · Suze OS</title>
+  <title>公司研究模板 · Suze Flow</title>
   <link rel="stylesheet" href="career.css">
-  <style>
-    .company-tools {
-      margin-bottom:16px;
-      padding:16px;
-      display:grid;
-      gap:14px;
-      border:1px solid rgba(23,32,43,.07);
-      border-radius:16px;
-      background:rgba(255,255,255,.45);
-    }
-
-    .company-search {
-      display:grid;
-      gap:7px;
-    }
-
-    .company-search span,
-    .company-category-title {
-      color:#566371;
-      font-size:10px;
-      font-weight:800;
-    }
-
-    .company-search input {
-      width:100%;
-      min-height:42px;
-      padding:10px 12px;
-      border:1px solid rgba(23,32,43,.08);
-      border-radius:11px;
-      background:rgba(255,255,255,.72);
-      color:var(--text);
-      font:inherit;
-      font-size:12px;
-      outline:none;
-    }
-
-    .company-category-filter {
-      display:grid;
-      gap:8px;
-    }
-
-    .company-categories {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .company-category {
-      min-height:34px;
-      padding:7px 12px;
-      border:1px solid rgba(23,32,43,.08);
-      border-radius:999px;
-      background:rgba(255,255,255,.66);
-      color:#566371;
-      cursor:pointer;
-      font:inherit;
-      font-size:11px;
-      font-weight:800;
-      outline:none;
-    }
-
-    .company-category-active {
-      border-color:rgba(22,201,195,.28);
-      background:rgba(22,201,195,.12);
-      color:var(--accent-deep);
-    }
-
-    .company-card-head {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .company-status {
-      flex:0 0 auto;
-    }
-
-    .company-status-select {
-      min-height:36px;
-      padding:7px 30px 7px 12px;
-      border:1px solid rgba(22,201,195,.24);
-      border-radius:999px;
-      background:rgba(22,201,195,.12);
-      color:var(--accent-deep);
-      cursor:pointer;
-      font:inherit;
-      font-size:11px;
-      font-weight:800;
-      outline:none;
-    }
-
-    .company-search input:focus,
-    .company-category:focus-visible,
-    .company-status-select:focus {
-      border-color:rgba(22,201,195,.46);
-      box-shadow:0 0 0 3px rgba(22,201,195,.09);
-    }
-
-    .sr-only {
-      position:absolute;
-      width:1px;
-      height:1px;
-      padding:0;
-      margin:-1px;
-      overflow:hidden;
-      clip:rect(0,0,0,0);
-      white-space:nowrap;
-      border:0;
-    }
-
-    @media(max-width:768px) {
-      .company-tools {
-        padding:14px;
-      }
-
-      .company-card-head {
-        align-items:flex-start;
-        flex-direction:column;
-      }
-
-      .company-status,
-      .company-status-select {
-        width:100%;
-      }
-
-      .company-search input,
-      .company-category,
-      .company-status-select {
-        font-size:16px;
-      }
-    }
-  </style>
 </head>
 <body>
   <header class="career-header">
-    <div class="career-nav">
-      <div class="career-brand">Suze<span>.</span></div>
-      <div class="career-context">CAREER</div>
+    <div class="career-topbar">
+      <a class="career-back" href="../index.html#career">← 返回求职模式</a>
+      <a class="career-brand" href="../index.html#career" aria-label="Suze Flow 求职模式">Suze <span>Flow</span></a>
     </div>
   </header>
-  <main class="career-main tracker-main">
-    <section class="career-panel tracker-panel">
-      <div class="tracker-page-head">
-        <div>
-          <div class="career-eyebrow">CAREER</div>
-          <h1>公司库</h1>
-          <p class="tracker-page-copy">整理目标公司信息和招聘进展。</p>
-        </div>
-        <a class="back-button tracker-back" href="../index.html">返回首页</a>
-      </div>
+  <main class="career-main">
+    <section class="career-panel" aria-labelledby="pageTitle">
+      <div class="career-page-head"><h1 id="pageTitle">公司研究模板</h1><p>整理目标公司信息，为岗位分析做准备。</p></div>
+      <nav class="career-tabs" aria-label="求职内部导航">
+        <a href="jobs.html">岗位</a>
+        <a href="companies.html" aria-current="page">公司</a>
+        <a href="resume.html">简历</a>
+        <a href="interview.html">面试</a>
+        <a href="apply.html">投递</a>
+        <a href="cases.html">案例</a>
+      </nav>
+      <aside class="template-notice" aria-label="模板使用说明"><strong>公司研究模板 · 暂未接入独立保存</strong><p>输入仅用于本页临时整理，刷新或离开页面可能丢失。正式岗位、投递状态和面试记录请在 Job Radar 中管理。</p><a class="career-button" href="jobs.html#jobRecordsTitle">进入 Job Radar →</a></aside>
 
-      <section class="company-tools" aria-label="公司筛选">
-        <label class="company-search">
-          <span>搜索公司</span>
-          <input type="search" name="company-search" placeholder="搜索公司名称、行业或目标岗位">
-        </label>
-        <div class="company-category-filter">
-          <div class="company-category-title">行业分类</div>
-          <div class="company-categories" aria-label="行业分类标签">
-            <button class="company-category company-category-active" type="button">全部</button>
-            <button class="company-category" type="button">互联网</button>
-            <button class="company-category" type="button">电商</button>
-            <button class="company-category" type="button">内容营销</button>
-            <button class="company-category" type="button">旅游</button>
-            <button class="company-category" type="button">消费品牌</button>
-            <button class="company-category" type="button">其他</button>
-          </div>
-        </div>
-      </section>
 
-      <form class="record-card" aria-label="公司卡片模板">
+
+      <section class="record-card" aria-label="公司卡片模板" data-template="true">
         <div class="record-card-head company-card-head">
           <div>
-            <div class="record-kicker">COMPANY CARD</div>
+            <div class="record-kicker">研究模板</div>
             <h2>公司档案</h2>
           </div>
           <label class="company-status">
@@ -250,7 +102,7 @@
             <input type="number" name="match-score" min="0" max="100" step="1" inputmode="numeric" placeholder="0–100">
           </label>
         </div>
-      </form>
+      </section>
     </section>
   </main>
 </body>

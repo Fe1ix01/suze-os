@@ -3,408 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>案例库 · Suze OS</title>
+  <title>案例库 · Suze Flow</title>
   <link rel="stylesheet" href="career.css">
-  <style>
-    .case-category-panel {
-      margin-bottom:16px;
-      padding:14px;
-      display:grid;
-      gap:9px;
-      border:1px solid rgba(23,32,43,.07);
-      border-radius:16px;
-      background:rgba(255,255,255,.45);
-    }
-
-    .case-category-title {
-      color:#566371;
-      font-size:10px;
-      font-weight:800;
-    }
-
-    .case-categories {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .case-category {
-      min-height:34px;
-      padding:7px 12px;
-      border:1px solid rgba(23,32,43,.08);
-      border-radius:999px;
-      background:rgba(255,255,255,.66);
-      color:#566371;
-      cursor:pointer;
-      font:inherit;
-      font-size:11px;
-      font-weight:800;
-      outline:none;
-    }
-
-    .case-category-active {
-      border-color:rgba(22,201,195,.28);
-      background:rgba(22,201,195,.12);
-      color:var(--accent-deep);
-    }
-
-    .case-overview-head {
-      margin:4px 0 14px;
-    }
-
-    .case-overview-title {
-      margin:0;
-      font-size:16px;
-      letter-spacing:-.2px;
-    }
-
-    .case-overview-copy {
-      margin:4px 0 0;
-      color:var(--muted);
-      font-size:11px;
-    }
-
-    .real-case {
-      margin-top:16px;
-    }
-
-    .real-case-head {
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:18px;
-    }
-
-    .real-case-title {
-      margin:3px 0 0;
-      font-size:22px;
-      letter-spacing:-.4px;
-    }
-
-    .real-case-tags {
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      gap:8px;
-    }
-
-    .real-case-tag {
-      min-height:30px;
-      padding:6px 10px;
-      display:inline-flex;
-      align-items:center;
-      border:1px solid rgba(22,201,195,.20);
-      border-radius:999px;
-      background:rgba(22,201,195,.08);
-      color:var(--accent-deep);
-      font-size:10px;
-      font-weight:800;
-    }
-
-    .real-case-meta {
-      margin-top:16px;
-      padding:12px 14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      border:1px solid rgba(23,32,43,.06);
-      border-radius:12px;
-      background:rgba(255,255,255,.42);
-    }
-
-    .real-case-meta-label {
-      color:var(--muted);
-      font-size:10px;
-      font-weight:800;
-    }
-
-    .real-case-meta-value {
-      color:#344250;
-      font-size:12px;
-      font-weight:800;
-    }
-
-    .real-case-section {
-      margin-top:18px;
-      padding-top:18px;
-      border-top:1px solid rgba(23,32,43,.07);
-    }
-
-    .real-case-section h3 {
-      margin:0 0 9px;
-      color:#344250;
-      font-size:13px;
-      letter-spacing:-.1px;
-    }
-
-    .real-case-section p {
-      margin:0;
-      color:#566371;
-      font-size:12px;
-      line-height:1.75;
-    }
-
-    .real-case-actions {
-      margin:0;
-      padding:0;
-      display:grid;
-      gap:9px;
-      list-style:none;
-    }
-
-    .real-case-actions li {
-      position:relative;
-      padding-left:18px;
-      color:#566371;
-      font-size:12px;
-      line-height:1.65;
-    }
-
-    .real-case-actions li::before {
-      content:"";
-      position:absolute;
-      top:8px;
-      left:2px;
-      width:6px;
-      height:6px;
-      border-radius:50%;
-      background:var(--accent);
-    }
-
-    .real-case-results {
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px;
-    }
-
-    .real-case-result {
-      padding:14px;
-      border:1px solid rgba(22,201,195,.16);
-      border-radius:13px;
-      background:rgba(22,201,195,.07);
-    }
-
-    .real-case-result strong {
-      display:block;
-      color:var(--accent-deep);
-      font-size:20px;
-      letter-spacing:-.3px;
-    }
-
-    .real-case-result span {
-      display:block;
-      margin-top:4px;
-      color:#566371;
-      font-size:10px;
-      font-weight:800;
-    }
-
-    .real-case-story {
-      padding:16px;
-      border-left:3px solid var(--accent);
-      border-radius:0 13px 13px 0;
-      background:rgba(255,255,255,.48);
-    }
-
-    .case-editor {
-      margin-top:16px;
-    }
-
-    .case-editor-head {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .case-editor-category {
-      flex:0 0 auto;
-    }
-
-    .case-editor-select {
-      min-height:36px;
-      padding:7px 30px 7px 12px;
-      border:1px solid rgba(22,201,195,.24);
-      border-radius:999px;
-      background:rgba(22,201,195,.12);
-      color:var(--accent-deep);
-      cursor:pointer;
-      font:inherit;
-      font-size:11px;
-      font-weight:800;
-      outline:none;
-    }
-
-    .case-section {
-      margin-top:18px;
-      padding-top:18px;
-      border-top:1px solid rgba(23,32,43,.07);
-    }
-
-    .case-section-head {
-      margin-bottom:14px;
-    }
-
-    .case-section-kicker {
-      color:var(--accent-deep);
-      font-size:9px;
-      font-weight:800;
-      letter-spacing:1.1px;
-    }
-
-    .case-section h3 {
-      margin:3px 0 0;
-      font-size:16px;
-      letter-spacing:-.2px;
-    }
-
-    .star-grid {
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:14px;
-    }
-
-    .star-card {
-      min-width:0;
-      padding:14px;
-      display:grid;
-      gap:9px;
-      border:1px solid rgba(23,32,43,.06);
-      border-radius:13px;
-      background:rgba(255,255,255,.42);
-    }
-
-    .star-label {
-      display:flex;
-      align-items:center;
-      gap:8px;
-      color:#344250;
-      font-size:11px;
-      font-weight:800;
-    }
-
-    .star-letter {
-      width:26px;
-      height:26px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:50%;
-      background:rgba(22,201,195,.12);
-      color:var(--accent-deep);
-      font-size:11px;
-    }
-
-    .star-card textarea {
-      min-height:120px;
-    }
-
-    .experience-tags {
-      margin-top:10px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .experience-tag {
-      min-height:30px;
-      padding:6px 10px;
-      display:inline-flex;
-      align-items:center;
-      border:1px solid rgba(22,201,195,.20);
-      border-radius:999px;
-      background:rgba(22,201,195,.08);
-      color:var(--accent-deep);
-      font-size:10px;
-      font-weight:800;
-    }
-
-    .case-category:focus-visible,
-    .case-editor-select:focus {
-      border-color:rgba(22,201,195,.46);
-      box-shadow:0 0 0 3px rgba(22,201,195,.09);
-    }
-
-    .sr-only {
-      position:absolute;
-      width:1px;
-      height:1px;
-      padding:0;
-      margin:-1px;
-      overflow:hidden;
-      clip:rect(0,0,0,0);
-      white-space:nowrap;
-      border:0;
-    }
-
-    @media(max-width:768px) {
-      .case-category-panel {
-        padding:12px;
-      }
-
-      .case-editor-head {
-        align-items:flex-start;
-        flex-direction:column;
-      }
-
-      .real-case-head,
-      .real-case-meta {
-        align-items:flex-start;
-        flex-direction:column;
-      }
-
-      .real-case-tags {
-        justify-content:flex-start;
-      }
-
-      .real-case-results {
-        grid-template-columns:1fr;
-      }
-
-      .case-editor-category,
-      .case-editor-select {
-        width:100%;
-      }
-
-      .case-category,
-      .case-editor-select {
-        font-size:16px;
-      }
-
-      .star-grid {
-        grid-template-columns:1fr;
-      }
-    }
-  </style>
 </head>
 <body>
   <header class="career-header">
-    <div class="career-nav">
-      <div class="career-brand">Suze<span>.</span></div>
-      <div class="career-context">CAREER</div>
+    <div class="career-topbar">
+      <a class="career-back" href="../index.html#career">← 返回求职模式</a>
+      <a class="career-brand" href="../index.html#career" aria-label="Suze Flow 求职模式">Suze <span>Flow</span></a>
     </div>
   </header>
-  <main class="career-main tracker-main">
-    <section class="career-panel tracker-panel">
-      <div class="tracker-page-head">
-        <div>
-          <div class="career-eyebrow">CAREER</div>
-          <h1>案例库</h1>
-          <p class="tracker-page-copy">沉淀可用于简历和面试的代表案例。</p>
-        </div>
-        <a class="back-button tracker-back" href="../index.html">返回首页</a>
-      </div>
+  <main class="career-main">
+    <section class="career-panel" aria-labelledby="pageTitle">
+      <div class="career-page-head"><h1 id="pageTitle">案例库</h1><p>真实项目成果与面试表达。</p></div>
+      <nav class="career-tabs" aria-label="求职内部导航">
+        <a href="jobs.html">岗位</a>
+        <a href="companies.html">公司</a>
+        <a href="resume.html">简历</a>
+        <a href="interview.html">面试</a>
+        <a href="apply.html">投递</a>
+        <a href="cases.html" aria-current="page">案例</a>
+      </nav>
 
       <section class="case-category-panel" aria-label="案例分类">
-        <div class="case-category-title">案例分类标签</div>
+        <div class="case-category-title">案例涉及领域</div>
         <div class="case-categories">
-          <button class="case-category case-category-active" type="button">全部案例</button>
-          <button class="case-category" type="button">达人运营</button>
-          <button class="case-category" type="button">品牌增长</button>
-          <button class="case-category" type="button">直播</button>
-          <button class="case-category" type="button">电商</button>
-          <button class="case-category" type="button">内容营销</button>
+          <span class="case-category">达人运营</span>
+          <span class="case-category">品牌增长</span>
+          <span class="case-category">直播</span>
+          <span class="case-category">电商</span>
+          <span class="case-category">内容营销</span>
         </div>
       </section>
 
@@ -415,7 +43,7 @@
 
       <div class="case-grid">
         <article class="case-card">
-          <div class="case-label">CASE 01</div>
+          <div class="case-label">案例 01</div>
           <h2>Klook</h2>
           <ul class="case-metrics">
             <li>业务 / 项目累计 GMV 5390 万</li>
@@ -426,7 +54,7 @@
         </article>
 
         <article class="case-card">
-          <div class="case-label">CASE 02</div>
+          <div class="case-label">案例 02</div>
           <h2>理然</h2>
           <ul class="case-metrics">
             <li>合作达人 50+</li>
@@ -438,7 +66,7 @@
         </article>
 
         <article class="case-card">
-          <div class="case-label">CASE 03</div>
+          <div class="case-label">案例 03</div>
           <h2>古尔莎</h2>
           <ul class="case-metrics">
             <li>合作达人30+</li>
@@ -451,7 +79,7 @@
       <article class="record-card real-case" aria-labelledby="klook-case-title">
         <div class="real-case-head">
           <div>
-            <div class="record-kicker">REAL CASE 01</div>
+            <div class="record-kicker">真实案例 01</div>
             <h2 class="real-case-title" id="klook-case-title">Klook 抖音达人增长项目</h2>
           </div>
           <div class="real-case-tags" aria-label="案例分类">
@@ -523,7 +151,7 @@
       <article class="record-card real-case" aria-labelledby="gulsha-case-title">
         <div class="real-case-head">
           <div>
-            <div class="record-kicker">REAL CASE 02</div>
+            <div class="record-kicker">真实案例 02</div>
             <h2 class="real-case-title" id="gulsha-case-title">Gulsha 达人商务 / 达人运营项目</h2>
           </div>
           <div class="real-case-tags" aria-label="案例分类">
@@ -616,7 +244,7 @@
       <article class="record-card real-case" aria-labelledby="liran-case-title">
         <div class="real-case-head">
           <div>
-            <div class="record-kicker">REAL CASE 03</div>
+            <div class="record-kicker">真实案例 03</div>
             <h2 class="real-case-title" id="liran-case-title">理然男士个护达人增长项目</h2>
           </div>
           <div class="real-case-tags" aria-label="案例分类">
@@ -715,11 +343,12 @@
         </section>
       </article>
 
-      <form class="record-card case-editor" aria-label="职业案例卡片">
+      <aside class="template-notice" aria-label="模板使用说明"><strong>案例草稿模板 · 暂未接入独立保存</strong><p>输入仅用于本页临时整理，刷新或离开页面可能丢失。正式岗位、投递状态和面试记录请在 Job Radar 中管理。</p><a class="career-button" href="jobs.html#jobRecordsTitle">进入 Job Radar →</a></aside>
+      <section class="record-card case-editor" aria-label="职业案例卡片" data-template="true">
         <div class="record-card-head case-editor-head">
           <div>
-            <div class="record-kicker">CAREER CASE CARD</div>
-            <h2>案例记录卡片</h2>
+            <div class="record-kicker">案例草稿模板</div>
+            <h2>案例草稿区 · 未独立保存</h2>
           </div>
           <label class="case-editor-category">
             <span class="sr-only">案例分类</span>
@@ -777,7 +406,7 @@
 
         <section class="case-section" aria-labelledby="case-interview-title">
           <div class="case-section-head">
-            <div class="case-section-kicker">INTERVIEW STORY</div>
+            <div class="case-section-kicker">面试表达</div>
             <h3 id="case-interview-title">面试表达</h3>
           </div>
           <label class="record-field record-field-wide">
@@ -788,7 +417,7 @@
 
         <section class="case-section" aria-labelledby="case-star-title">
           <div class="case-section-head">
-            <div class="case-section-kicker">STAR FRAMEWORK</div>
+            <div class="case-section-kicker">STAR 结构</div>
             <h3 id="case-star-title">STAR 结构记录</h3>
           </div>
           <div class="star-grid">
@@ -813,7 +442,7 @@
 
         <section class="case-section" aria-labelledby="case-experience-title">
           <div class="case-section-head">
-            <div class="case-section-kicker">REUSABLE EXPERIENCE</div>
+            <div class="case-section-kicker">可复制经验</div>
             <h3 id="case-experience-title">可复制经验</h3>
           </div>
           <label class="record-field record-field-wide">
@@ -827,7 +456,7 @@
             <span class="experience-tag">流程优化</span>
           </div>
         </section>
-      </form>
+      </section>
     </section>
   </main>
 </body>

@@ -1,347 +1,161 @@
-:root {
-  --bg1:#eef4f8;
-  --bg2:#dfe9f3;
-  --bg3:#d3e0eb;
-  --text:#17202b;
-  --muted:#65717d;
-  --accent:#16c9c3;
-  --accent-deep:#0f8f8a;
-  --panel:rgba(255,255,255,.40);
-  --shadow:0 18px 44px rgba(32,56,85,.08);
+:root{
+  color-scheme:dark;
+  --bg:#050607;--panel:#101316;--panel-2:#15191d;--panel-3:#0b0e10;
+  --text:#f5f7fa;--muted:#929ba5;--line:#252c33;
+  --accent:#00e7e7;--accent-soft:rgba(0,231,231,.10);--good:#8fffe9;
+  --radius:18px;--max:1180px;
 }
-
-* { box-sizing:border-box; }
-
-html { min-height:100%; }
-
-body {
-  margin:0;
-  min-height:100vh;
-  color:var(--text);
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,
-  "Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;
-  background:
-    radial-gradient(circle at 13% 17%, rgba(22,201,195,.13), transparent 24%),
-    radial-gradient(circle at 86% 14%, rgba(116,152,255,.12), transparent 26%),
-    linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 56%,var(--bg3) 100%);
-  line-height:1.45;
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{min-height:100%;scroll-padding-top:24px}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 22% -5%,rgba(0,231,231,.10),transparent 26%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+a,button,input,select,textarea{touch-action:manipulation}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+h1,h2,h3,h4,p,li,strong,span{overflow-wrap:anywhere}
+h1{margin:0;font-size:clamp(28px,4vw,42px);line-height:1.2;letter-spacing:-.8px}
+h2{margin:0 0 12px;font-size:22px;line-height:1.4}
+h3{margin:0 0 10px;font-size:18px;line-height:1.5}
+h4{margin:0 0 12px;font-size:15px}
+p{margin:8px 0 16px}
+.career-header{border-bottom:1px solid var(--line);background:rgba(5,6,7,.76)}
+.career-topbar,.career-main{width:min(calc(100% - 36px),var(--max));margin:0 auto}
+.career-topbar{min-height:76px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:12px 0}
+.career-back{display:inline-flex;align-items:center;min-height:44px;color:var(--muted);font-size:14px}
+.career-back:hover{color:var(--text)}
+.career-brand{font-size:22px;font-weight:850;white-space:nowrap}
+.career-brand span{color:var(--accent)}
+.career-main{padding:36px 0 64px}
+.career-panel{min-width:0;width:100%}
+.career-page-head{margin-bottom:24px}
+.career-page-head p{color:var(--muted);font-size:14px;margin:12px 0 0}
+.career-tabs{display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+.career-tabs a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:10px 22px;border:1px solid transparent;border-radius:11px;font-size:14px;color:var(--muted)}
+.career-tabs a:hover{background:var(--panel-2);color:var(--text)}
+.career-tabs a[aria-current]{border-color:rgba(0,231,231,.32);background:var(--accent-soft);color:var(--good)}
+.page-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px 20px;margin-bottom:20px}
+.page-actions>span{font-size:13px;color:var(--muted)}
+.career-button,.job-action-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 16px;border:1px solid var(--line);border-radius:11px;background:var(--panel);color:var(--text);font-size:14px;cursor:pointer;text-align:center;overflow-wrap:anywhere}
+.career-button:hover,.job-action-button:hover{background:var(--panel-2);border-color:#3b4651}
+.career-button.primary,.job-action-primary{background:var(--accent);border-color:var(--accent);color:#001919;font-weight:800}
+.job-action-danger{color:#ffb4b4}
+.template-notice{padding:20px 24px;margin:0 0 24px;border:1px solid rgba(0,231,231,.25);border-radius:var(--radius);background:var(--accent-soft)}
+.template-notice strong{color:var(--good);font-size:15px}
+.template-notice p{max-width:80ch;color:#b5bfc8;font-size:14px;margin:8px 0 16px}
+.template-directions,.case-category-panel{margin-bottom:24px}
+.template-directions h2{font-size:18px}
+.template-directions p{color:var(--muted);font-size:14px}
+.topic-tags,.advantage-tags,.case-categories,.real-case-tags,.experience-tags,.application-channels,.interview-stages{display:flex;flex-wrap:wrap;gap:8px}
+.topic-tags span,.advantage-tag,.case-category,.real-case-tag,.experience-tag,.application-channel,.interview-stage,.job-record-tag{display:inline-flex;align-items:center;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel-2);font-size:12px;color:#b5bfc8;max-width:100%}
+.job-record-tag{background:var(--accent-soft);border-color:rgba(0,231,231,.16);color:var(--good)}
+.job-record-tag.is-priority{background:var(--panel-2);border-color:var(--line);color:var(--text)}
+.case-category-title,.resume-version-label,.interview-stage-title,.application-channel-title{font-size:13px;color:var(--muted);margin-bottom:10px}
+.record-card,.job-card,.job-record,.case-card{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,.038),rgba(255,255,255,.014));min-width:0}
+.record-card-head,.job-card-head{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px}
+.record-kicker,.job-card-kicker,.case-label,.resume-section-kicker,.interview-section-kicker,.application-review-kicker,.case-section-kicker{font-size:12px;color:var(--muted);margin-bottom:6px}
+.record-card-head h2,.job-card-head h2{margin-bottom:0}
+.record-grid,.job-grid,.interview-editor-grid,.job-record-notes,.star-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.record-field,.job-field,.filter-field{display:grid;gap:8px;min-width:0;align-content:start}
+.record-field>span,.job-field>span,.filter-field>span{color:#b5bfc8;font-size:13px}
+.record-field-wide,.job-field-wide{grid-column:1/-1}
+input,select,textarea{min-width:0;max-width:100%;width:100%;border:1px solid var(--line);border-radius:11px;background:var(--panel-3);padding:11px 12px;font-size:15px;line-height:1.5}
+input,select{min-height:46px}
+textarea{min-height:120px;resize:vertical}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:1}
+select{cursor:pointer}
+.company-status,.resume-status,.interview-result,.application-status,.case-editor-category{min-width:0;max-width:100%;width:180px}
+.job-tags{display:flex;flex-wrap:wrap;gap:10px;max-width:100%}
+.tag-field{min-width:0;flex:1 1 130px}
+.priority-tag,.status-tag{width:100%}
+.job-filters{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:16px;margin-bottom:24px;padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.job-records{margin-bottom:32px}
+.job-records-head,.job-section-head,.interview-editor-head,.job-record-head,.real-case-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.job-records-head h2,.job-section-head h3,.job-record-title h3{margin:0}
+.job-records-head p,.job-section-head p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.job-record-count{color:var(--muted);font-size:13px}
+.job-list,.interview-editor-list{display:grid;gap:16px}
+.job-record-title{min-width:0;flex:1 1 220px}
+.job-record-title p{margin:6px 0 0;color:#b5bfc8;font-size:14px;white-space:pre-wrap}
+.job-record-actions,.job-record-tags,.job-record-meta{display:flex;flex-wrap:wrap;gap:8px;max-width:100%}
+.job-record-actions{flex:0 1 auto}
+.job-record-meta{margin-top:16px;color:var(--muted);font-size:13px;align-items:center}
+.job-record-meta span{min-width:0;max-width:100%}
+.job-record-meta span:not(:last-child)::after{content:'·';margin-left:8px;color:var(--muted)}
+.job-record-link{color:var(--good);padding:6px 0}
+.job-record-link:hover{text-decoration:underline}
+.job-record-notes{margin-top:16px}
+.job-record-note,.job-record-interview,.interview-editor,.star-card{padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--panel-3);min-width:0}
+.job-record-note{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;color:#b5bfc8}
+.job-record-note strong{display:block;margin-bottom:6px;color:var(--text)}
+.job-record-interviews,.job-interview-section,.resume-section,.interview-section,.application-review,.case-section{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
+.job-record-interview+.job-record-interview{margin-top:12px}
+.job-record-interview p{white-space:pre-wrap;font-size:14px;color:#b5bfc8;margin:8px 0 0}
+.interview-editor-title{font-weight:700;color:var(--good)}
+.interview-editor-grid .job-field:first-child,.interview-editor-grid .job-field:last-child{grid-column:1/-1}
+.job-form-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.job-data-status{margin:14px 0 0;color:var(--good);font-size:14px;min-height:22px}
+.job-data-status.is-error{color:#ffb4b4}
+.job-empty{padding:28px 20px;border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted);font-size:14px;text-align:center}
+.advantage-wrap{gap:10px}
+.interview-stage-wrap,.application-channel-wrap{margin-top:24px;padding:16px;background:var(--panel-3);border:1px solid var(--line);border-radius:12px}
+.interview-textarea{min-height:150px}
+.case-overview-head{margin:24px 0 16px}
+.case-overview-copy{color:var(--muted);font-size:14px}
+.case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:32px}
+.case-metrics{margin:0;padding-left:20px;color:#b5bfc8;font-size:14px}
+.case-metrics li+li{margin-top:10px}
+.case-metrics li::marker{color:var(--accent)}
+.real-case{margin-bottom:24px}
+.real-case-head>div{min-width:0}
+.real-case-title{margin:0}
+.real-case-meta{display:flex;flex-wrap:wrap;gap:8px 20px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:14px}
+.real-case-meta-label{color:var(--muted)}
+.real-case-section{margin-top:24px}
+.real-case-section p,.real-case-actions{font-size:15px;color:#c4ccd4;line-height:1.8}
+.real-case-actions{padding-left:22px}
+.real-case-actions li+li{margin-top:8px}
+.real-case-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.real-case-result{min-width:0;padding:16px;background:var(--accent-soft);border:1px solid rgba(0,231,231,.16);border-radius:12px}
+.real-case-result strong{display:block;color:var(--good);font-size:24px;line-height:1.4}
+.real-case-result span{display:block;color:#b5bfc8;font-size:13px;margin-top:8px}
+.real-case-story{padding:18px;border-left:3px solid var(--accent);background:var(--panel-3);border-radius:0 12px 12px 0}
+.star-label{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;margin-bottom:10px}
+.star-letter{display:inline-grid;place-items:center;width:28px;height:28px;flex-shrink:0;border-radius:8px;background:var(--accent-soft);color:var(--accent)}
+.star-card p{margin:0;font-size:14px;line-height:1.8}
+.case-editor .experience-tags{margin-top:16px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:800px){
+  .case-grid{grid-template-columns:1fr}
+  .real-case-results{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-
-a { color:inherit; text-decoration:none; }
-
-.career-header {
-  height:56px;
-  border-bottom:1px solid rgba(255,255,255,.45);
-  background:rgba(255,255,255,.24);
-  backdrop-filter:blur(12px);
+@media(max-width:680px){
+  .career-topbar,.career-main{width:calc(100% - 32px)}
+  .career-topbar{min-height:68px}
+  .career-brand{font-size:20px}
+  .career-main{padding:26px 0 40px}
+  .career-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .career-tabs a{padding:10px 8px}
+  .record-card,.job-card,.job-record,.case-card{padding:20px}
+  .template-notice{padding:20px}
+  .template-notice .career-button{width:100%}
+  .page-actions{align-items:stretch;flex-direction:column;gap:10px}
+  .job-filters{grid-template-columns:1fr;padding:16px}
+  .record-grid,.job-grid,.interview-editor-grid,.job-record-notes,.star-grid{grid-template-columns:1fr}
+  .record-field-wide,.job-field-wide,.interview-editor-grid .job-field:first-child,.interview-editor-grid .job-field:last-child{grid-column:auto}
+  input,select,textarea{font-size:16px}
+  .job-card-head,.record-card-head{flex-direction:column;align-items:stretch}
+  .company-status,.resume-status,.interview-result,.application-status,.case-editor-category{width:100%}
+  .job-tags{width:100%}
+  .job-record-head{flex-direction:column}
+  .job-record-title{flex-basis:auto;width:100%}
+  .job-record-actions{width:100%}
+  .job-record-actions .job-action-button{flex:1}
+  .job-form-actions .job-action-button{flex:1 1 100%}
+  .interview-editor-head{flex-direction:column}
+  .real-case-results{gap:10px}
+  .real-case-result{padding:12px}
+  .real-case-result strong{font-size:22px}
+  .real-case-section p,.real-case-actions{font-size:14px}
 }
-
-.career-nav {
-  width:min(calc(100% - 36px),980px);
-  height:56px;
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.career-brand {
-  font-size:17px;
-  font-weight:800;
-}
-
-.career-brand span { color:var(--accent-deep); }
-
-.career-context {
-  color:var(--muted);
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:1.2px;
-}
-
-.career-main {
-  width:min(calc(100% - 36px),760px);
-  min-height:calc(100vh - 56px);
-  margin:0 auto;
-  padding:36px 0;
-  display:grid;
-  place-items:center;
-}
-
-.career-panel {
-  width:100%;
-  padding:52px 24px;
-  text-align:center;
-  border:1px solid rgba(255,255,255,.58);
-  border-radius:22px;
-  background:var(--panel);
-  box-shadow:var(--shadow);
-  backdrop-filter:blur(16px);
-}
-
-.career-eyebrow {
-  margin-bottom:10px;
-  color:var(--accent-deep);
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:1.35px;
-}
-
-h1 {
-  margin:0;
-  color:#111923;
-  font-size:clamp(34px,6vw,48px);
-  letter-spacing:-1.2px;
-}
-
-.back-button {
-  min-height:44px;
-  margin-top:28px;
-  padding:10px 18px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  border:1px solid var(--accent);
-  border-radius:999px;
-  background:var(--accent);
-  color:#062321;
-  font-size:12px;
-  font-weight:800;
-  box-shadow:var(--shadow);
-  transition:.16s ease;
-}
-
-.back-button:hover {
-  transform:translateY(-1px);
-  filter:brightness(1.03);
-}
-
-.back-button:focus-visible {
-  outline:2px solid var(--accent-deep);
-  outline-offset:3px;
-}
-
-@media(max-width:768px) {
-  .career-nav,
-  .career-main {
-    width:calc(100% - 20px);
-  }
-
-  .career-main { padding:20px 0; }
-  .career-panel { padding:42px 18px; }
-  .back-button { font-size:13px; }
-}
-
-.tracker-main {
-  width:min(calc(100% - 36px),980px);
-  place-items:start center;
-}
-
-.tracker-panel {
-  padding:32px;
-  text-align:left;
-}
-
-.tracker-page-head {
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:24px;
-  margin-bottom:24px;
-}
-
-.tracker-page-head h1 {
-  font-size:clamp(32px,5vw,44px);
-}
-
-.tracker-page-copy {
-  margin:8px 0 0;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.tracker-back {
-  flex:0 0 auto;
-  margin-top:0;
-}
-
-.record-card {
-  padding:22px;
-  border:1px solid rgba(23,32,43,.07);
-  border-radius:16px;
-  background:rgba(255,255,255,.56);
-}
-
-.record-card-head {
-  margin-bottom:20px;
-}
-
-.record-kicker {
-  color:var(--accent-deep);
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:1.1px;
-}
-
-.record-card h2 {
-  margin:3px 0 0;
-  font-size:20px;
-  letter-spacing:-.3px;
-}
-
-.record-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:16px;
-}
-
-.record-field {
-  min-width:0;
-  display:grid;
-  gap:7px;
-}
-
-.record-field-wide {
-  grid-column:1/-1;
-}
-
-.record-field span {
-  color:#566371;
-  font-size:10px;
-  font-weight:800;
-}
-
-.record-field input,
-.record-field select,
-.record-field textarea {
-  width:100%;
-  border:1px solid rgba(23,32,43,.08);
-  border-radius:11px;
-  background:rgba(255,255,255,.72);
-  color:var(--text);
-  font:inherit;
-  font-size:12px;
-  outline:none;
-}
-
-.record-field input,
-.record-field select {
-  min-height:42px;
-  padding:10px 12px;
-}
-
-.record-field select {
-  cursor:pointer;
-}
-
-.record-field textarea {
-  min-height:112px;
-  padding:11px 12px;
-  line-height:1.6;
-  resize:vertical;
-}
-
-.record-field input:focus,
-.record-field select:focus,
-.record-field textarea:focus {
-  border-color:rgba(22,201,195,.46);
-  box-shadow:0 0 0 3px rgba(22,201,195,.09);
-}
-
-.case-grid {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:16px;
-}
-
-.case-card {
-  min-width:0;
-  padding:22px;
-  border:1px solid rgba(23,32,43,.07);
-  border-radius:16px;
-  background:rgba(255,255,255,.56);
-}
-
-.case-card h2 {
-  margin:4px 0 18px;
-  font-size:22px;
-  letter-spacing:-.4px;
-}
-
-.case-label {
-  color:var(--accent-deep);
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:1.1px;
-}
-
-.case-metrics {
-  margin:0;
-  padding:0;
-  display:grid;
-  gap:10px;
-  list-style:none;
-}
-
-.case-metrics li {
-  position:relative;
-  padding:11px 12px 11px 27px;
-  border:1px solid rgba(23,32,43,.06);
-  border-radius:11px;
-  background:rgba(255,255,255,.62);
-  color:#344250;
-  font-size:12px;
-  line-height:1.55;
-}
-
-.case-metrics li::before {
-  content:"";
-  position:absolute;
-  top:17px;
-  left:13px;
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:var(--accent);
-}
-
-@media(max-width:768px) {
-  .tracker-main {
-    width:calc(100% - 20px);
-  }
-
-  .tracker-panel {
-    padding:22px 16px;
-  }
-
-  .tracker-page-head {
-    align-items:flex-start;
-    flex-direction:column;
-    gap:18px;
-  }
-
-  .tracker-back {
-    width:100%;
-  }
-
-  .record-card,
-  .case-card {
-    padding:16px;
-  }
-
-  .record-grid,
-  .case-grid {
-    grid-template-columns:1fr;
-    gap:14px;
-  }
-
-  .record-field-wide {
-    grid-column:auto;
-  }
-
-  .record-field input,
-  .record-field select,
-  .record-field textarea {
-    font-size:16px;
-  }
-}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}

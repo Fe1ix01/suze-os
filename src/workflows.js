@@ -1,18 +1,26 @@
 let workflowUrls = [];
-const workflowNames = {'chatgpt.com':'ChatGPT','www.perplexity.ai':'Perplexity','gemini.google.com':'Gemini','www.zhipin.com':'BOSS直聘','mail.google.com':'Gmail','www.linkedin.com':'LinkedIn','www.youtube.com':'YouTube','github.com':'GitHub','x.com':'X','www.tiktok.com':'TikTok','www.instagram.com':'Instagram'};
-function openSet(urls){
-  workflowUrls = urls;
+const jobTools = [
+  ['https://www.zhipin.com','BOSS 直聘 · 查找岗位'],
+  ['https://www.linkedin.com','LinkedIn · 职业机会'],
+  ['https://chatgpt.com','ChatGPT · JD 分析与简历修改'],
+  ['https://gemini.google.com','Gemini · 面试准备'],
+  ['https://www.perplexity.ai','Perplexity · 公司与行业研究'],
+  ['https://mail.google.com','Gmail · 求职邮件'],
+];
+export function launchJobMode(){
+  workflowUrls = jobTools.map(([url])=>url);
   const list = document.getElementById('workflowLinks');
   list.replaceChildren();
-  urls.forEach(url=>{
+  jobTools.forEach(([url,label])=>{
     const link = document.createElement('a');
     link.className = 'btn';
     link.href = url;
     link.target = '_blank';
-    link.rel = 'noopener';
-    link.textContent = workflowNames[new URL(url).hostname] || new URL(url).hostname;
+    link.rel = 'noopener noreferrer';
+    link.textContent = label;
     list.appendChild(link);
   });
+  document.getElementById('workflowTitle').textContent = '求职工具';
   document.getElementById('workflowStatus').textContent = '';
   document.getElementById('workflowDialog').showModal();
 }
@@ -25,7 +33,3 @@ export function openAllWorkflowLinks(){
   });
   document.getElementById('workflowStatus').textContent = blocked ? '浏览器拦截了部分窗口，请使用上方链接逐个打开。' : '已打开全部工具。';
 }
-export function launchResearchMode(){openSet(['https://chatgpt.com','https://www.perplexity.ai','https://gemini.google.com']);}
-export function launchJobMode(){openSet(['https://www.zhipin.com','https://chatgpt.com','https://mail.google.com','https://www.linkedin.com']);}
-export function launchLearnMode(){openSet(['https://chatgpt.com','https://www.youtube.com','https://github.com','https://www.perplexity.ai']);}
-export function launchContentMode(){openSet(['https://www.youtube.com','https://x.com','https://www.tiktok.com','https://www.instagram.com']);}

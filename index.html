@@ -3,19 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Suze OS V3.0 - 个人操作系统" />
+  <meta name="description" content="Suze Flow · 求职、学习与记录" />
   <link rel="icon" href="data:," />
-  <title>Suze OS · Personal System</title>
+  <title>Suze Flow · 首页</title>
 </head>
 <body>
-  <header>
+  <header id="appHeader">
     <div class="wrap nav">
-      <a class="brand" href="#top">Suze<span>.</span></a>
-      <nav class="nav-links">
-        <a href="#dashboard">Dashboard</a>
-        <a href="#workspace">Workspace</a>
-        <a href="#journal">Journal</a>
-        <a href="#data">Data</a>
+      <a class="brand" href="#home">Suze <span>Flow</span></a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#home">首页</a><a href="#journal">记录</a><a href="#data">数据</a>
       </nav>
       <div class="auth-controls" aria-label="账户">
         <button class="btn small" id="openAuth" type="button" aria-haspopup="dialog" aria-controls="authDialog" disabled>登录</button>
@@ -27,71 +24,53 @@
     </div>
     <p class="wrap auth-status" id="authStatus" role="status" aria-live="polite"></p>
   </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="eyebrow">PERSONAL OPERATING SYSTEM · V3.0</div>
-          <h1>Suze OS</h1>
-          <h2>AI × Work × Learning × <span>Personal Data</span></h2>
-          <p class="hero-copy">从“常用网站导航”升级成真正每天能使用的个人系统：启动工作流、记录求职数据、沉淀学习、写日记和复盘，同时保留原来轻量的一键工作台。</p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#dashboard">进入系统</a>
-            <button class="btn" data-workflow="job">💼 启动求职工作流</button>
-          </div>
-        </div>
-
-        <aside class="quote-card">
-          <div class="quote-meta"><span id="nowText">--</span><span class="quote-status">● SYSTEM READY</span></div>
-          <blockquote id="quoteText">持续构建能反复使用的能力，而不是只完成一次任务。</blockquote>
-          <p>激励语每 10 分钟自动切换，不弹窗、不打断。</p>
-        </aside>
+  <main class="wrap app-main">
+    <section class="view home-view" id="home" data-view="home" aria-labelledby="homeTitle">
+      <div class="home-heading"><p class="today" id="nowText"></p><h1 id="homeTitle" tabindex="-1">今天要做什么？</h1></div>
+      <p id="homeDataStatus" class="data-status" role="status"></p>
+      <div class="home-grid">
+        <article class="home-card career-card">
+          <h2>求职</h2><p class="muted">当前手动累计数据</p>
+          <dl class="summary-metrics">
+            <div><dt>已投递</dt><dd id="homeApplied">—</dd></div>
+            <div><dt>有效回复</dt><dd id="homeReplies">—</dd></div>
+            <div><dt>面试</dt><dd id="homeInterviews">—</dd></div>
+            <div><dt>Offer</dt><dd id="homeOffers">—</dd></div>
+          </dl>
+          <a class="btn primary" href="#career">进入求职模式 <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="home-card learning-card">
+          <h2>学习</h2><p class="home-message">今日学习：未设置</p>
+          <p class="muted">从一个想深入了解的主题开始。</p>
+          <a class="btn primary" href="#learn">进入学习模式 <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="home-card record-card">
+          <h2>记录</h2><p id="homeJournalSummary">正在读取本地记录…</p><p id="homeReviewSummary" class="muted"></p>
+          <p class="record-preview" id="homeRecordPreview"></p>
+          <a class="btn" href="#journal">进入记录 <span aria-hidden="true">→</span></a>
+        </article>
       </div>
+      <div class="rest-entry"><a href="#entertainment" aria-label="休息时进入娱乐模式">休息时进入 →</a></div>
     </section>
 
-    <section id="dashboard">
-      <div class="wrap">
-        <div class="section-head">
-          <div><div class="section-kicker">COMMAND CENTER</div><h2>个人系统</h2><p>四个模块各做一件事：执行、求职、学习、沉淀。</p></div>
+    <section class="view" id="career" data-view="career" aria-labelledby="careerTitle" hidden inert>
+      <div class="mode-head"><a class="back-link" href="#home">← 返回首页</a><h1 id="careerTitle" tabindex="-1">求职模式</h1></div>
+      <section class="panel daily-career" aria-labelledby="dailyCareerTitle">
+        <h2 id="dailyCareerTitle">今日求职</h2><p class="muted">从已有岗位开始，查看下一步动作。</p>
+        <a class="btn primary" href="career/jobs.html">打开岗位管理 →</a>
+      </section>
+      <section class="panel" aria-labelledby="radarTitle">
+        <div class="panel-head"><div><h2 id="radarTitle">Job Radar · 求职工作台</h2><p class="muted">岗位、投递进展和多轮面试记录。</p></div></div>
+        <div class="tools career-tools">
+          <a class="tool" href="career/jobs.html"><strong>岗位</strong><small>新增、筛选与跟进岗位</small></a>
+          <a class="tool" href="career/companies.html"><strong>公司</strong><small>查看公司档案模板</small></a>
+          <a class="tool" href="career/resume.html"><strong>简历</strong><small>查看简历整理模板</small></a>
+          <a class="tool" href="career/jobs.html#jobRecordsTitle"><strong>面试</strong><small>在岗位记录中查看已保存的面试</small></a>
+          <a class="tool" href="career/cases.html"><strong>案例</strong><small>查看已有职业案例</small></a>
         </div>
-
-        <div class="system-grid">
-          <article class="system-card featured">
-            <div class="system-icon">⚡</div>
-            <h3>AI 工作流</h3>
-            <p>不是收藏更多 AI，而是按任务一键打开研究、分析、写作与执行所需工具。</p>
-            <button class="btn primary" data-workflow="research">启动研究工作流</button>
-          </article>
-          <article class="system-card">
-            <div class="system-icon">💼</div>
-            <h3>Job Radar</h3>
-            <p>集中求职入口，并记录投递、回复、面试和 Offer 数据，观察真实转化。</p>
-            <button class="btn" id="openJobPanel">打开求职看板</button>
-          </article>
-          <article class="system-card">
-            <div class="system-icon">🧠</div>
-            <h3>Learning Library</h3>
-            <p>把 YouTube、X、Perplexity、GitHub 变成学习入口，而不是无目的的信息流。</p>
-            <button class="btn" data-workflow="learn">启动学习模式</button>
-          </article>
-          <article class="system-card">
-            <div class="system-icon">◫</div>
-            <h3>Personal Data</h3>
-            <p>日记、复盘和关键数据保存在本地，可导出备份。后续再升级跨设备云同步。</p>
-            <a class="btn" href="#journal">进入记录系统</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap dashboard-grid">
-        <article class="panel" id="jobPanel">
-          <div class="panel-head">
-            <div><h3>求职数据看板</h3><div class="panel-sub">手动 +1 / -1，数据自动保存在当前浏览器</div></div>
-            <button class="btn small" data-workflow="job">打开求职工具</button>
-          </div>
+      </section>
+      <section class="panel" id="jobPanel" aria-labelledby="jobMetricsTitle">
+        <div class="panel-head"><div><h2 id="jobMetricsTitle">求职累计数据</h2><p class="muted">手动记录，与岗位明细分别保存。</p></div></div>
           <div class="metrics">
             <div class="metric"><div class="metric-label">已投递</div><div class="metric-row"><div class="metric-value" id="appliedValue">0</div><div class="metric-actions"><button aria-label="已投递减一" data-metric="applied" data-delta="-1">−</button><button aria-label="已投递加一" data-metric="applied" data-delta="1">+</button></div></div></div>
             <div class="metric"><div class="metric-label">有效回复</div><div class="metric-row"><div class="metric-value" id="repliesValue">0</div><div class="metric-actions"><button aria-label="有效回复减一" data-metric="replies" data-delta="-1">−</button><button aria-label="有效回复加一" data-metric="replies" data-delta="1">+</button></div></div></div>
@@ -99,67 +78,53 @@
             <div class="metric"><div class="metric-label">Offer</div><div class="metric-row"><div class="metric-value" id="offersValue">0</div><div class="metric-actions"><button aria-label="Offer减一" data-metric="offers" data-delta="-1">−</button><button aria-label="Offer加一" data-metric="offers" data-delta="1">+</button></div></div></div>
           </div>
           <div class="rate-line"><span>回复率 <strong id="replyRate">0%</strong></span><span>面试转化 <strong id="interviewRate">0%</strong></span><span>Offer 转化 <strong id="offerRate">0%</strong></span></div>
-        </article>
+      </section>
+      <section class="panel" aria-labelledby="jobAiTitle">
+        <div class="panel-head"><div><h2 id="jobAiTitle">求职 AI</h2><p class="muted">用于岗位分析、简历修改和面试准备。</p></div><button class="btn" data-workflow="job">打开求职工具</button></div>
+        <p class="muted">BOSS 直聘 · LinkedIn · ChatGPT · Gemini · Perplexity · Gmail</p>
+      </section>
+      <a class="review-entry" href="#review"><span>今日复盘</span><span>进入记录 →</span></a>
+    </section>
 
-        <article class="panel">
-          <div class="panel-head"><div><h3>AI 工作流</h3><div class="panel-sub">按任务开工具，不按工具找任务</div></div></div>
-          <div class="workflow-list">
-            <div class="workflow"><div><strong>研究 / 查资料</strong><span>ChatGPT + Perplexity + Gemini</span></div><button class="btn small" data-workflow="research">启动</button></div>
-            <div class="workflow"><div><strong>求职 / JD 分析</strong><span>BOSS + ChatGPT + Gmail + LinkedIn</span></div><button class="btn small" data-workflow="job">启动</button></div>
-            <div class="workflow"><div><strong>学习 / 深挖主题</strong><span>ChatGPT + YouTube + GitHub + Perplexity</span></div><button class="btn small" data-workflow="learn">启动</button></div>
-            <div class="workflow"><div><strong>内容 / 趋势观察</strong><span>YouTube + X + TikTok + Instagram</span></div><button class="btn small" data-workflow="content">启动</button></div>
-          </div>
-        </article>
+    <section class="view" id="learn" data-view="learn" aria-labelledby="learnTitle" hidden inert>
+      <div class="mode-head"><a class="back-link" href="#home">← 返回首页</a><h1 id="learnTitle" tabindex="-1">学习模式</h1></div>
+      <section class="panel"><h2>今日学习</h2><p class="home-message">今日学习：未设置</p><p class="muted">暂未设置学习主题和目标。先从下面的分类中选择内容。</p></section>
+      <div class="category-grid">
+        <section class="panel"><h2>AI / 科技</h2><div class="tools">
+          <a class="tool" target="_blank" rel="noopener noreferrer" href="https://chatgpt.com"><strong>ChatGPT</strong><small>解释概念与梳理问题</small></a>
+          <a class="tool" target="_blank" rel="noopener noreferrer" href="https://gemini.google.com"><strong>Gemini</strong><small>理解技术与整理资料</small></a>
+          <a class="tool" target="_blank" rel="noopener noreferrer" href="https://github.com"><strong>GitHub</strong><small>查阅项目与技术文档</small></a>
+        </div></section>
+        <section class="panel"><h2>商业 / 职业</h2><div class="tools"><a class="tool" target="_blank" rel="noopener noreferrer" href="https://www.perplexity.ai"><strong>Perplexity</strong><small>研究行业、商业案例与职业知识</small></a></div></section>
+        <section class="panel"><h2>深度内容</h2><p class="muted">还没有具体学习收藏。添加内容前，这里不提供视频推荐首页。</p></section>
+        <section class="panel"><h2>学习库</h2><p class="muted">暂无学习收藏。</p><p class="muted">本阶段仅整理学习入口，尚未启用收藏管理。</p></section>
       </div>
     </section>
 
-    <section id="workspace">
-      <div class="wrap">
-        <div class="section-head"><div><div class="section-kicker">WORKSPACE</div><h2>完整工作台</h2><p>常用工具与现有职业页面，按场景集中访问。</p></div></div>
-        <div class="workspace-panel">
-          <div class="group"><div class="group-title">🤖 AI</div><div class="tools">
-            <a class="tool" target="_blank" rel="noopener" href="https://chatgpt.com"><strong>ChatGPT</strong><small>主力 AI 工作区</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://claude.ai"><strong>Claude</strong><small>长文与分析</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://gemini.google.com"><strong>Gemini</strong><small>Google AI</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://www.perplexity.ai"><strong>Perplexity</strong><small>搜索与资料检索</small></a>
-          </div></div>
-          <div class="group"><div class="group-title">🛠 开发</div><div class="tools">
-            <a class="tool" target="_blank" rel="noopener" href="https://github.com"><strong>GitHub</strong><small>代码与仓库</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://vercel.com"><strong>Vercel</strong><small>部署网站</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://dash.cloudflare.com"><strong>Cloudflare</strong><small>域名与网络</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://codepen.io"><strong>CodePen</strong><small>前端快速测试</small></a>
-          </div></div>
-          <div class="group"><div class="group-title">🌍 内容 / 学习</div><div class="tools">
-            <a class="tool" target="_blank" rel="noopener" href="https://www.youtube.com"><strong>YouTube</strong><small>视频与学习</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://x.com"><strong>X</strong><small>资讯与趋势</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://www.tiktok.com"><strong>TikTok</strong><small>内容与海外平台</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://www.instagram.com"><strong>Instagram</strong><small>社媒内容</small></a>
-          </div></div>
-          <div class="group"><div class="group-title">💼 工作 / 求职</div><div class="tools">
-            <a class="tool" target="_blank" rel="noopener" href="https://www.zhipin.com"><strong>BOSS直聘</strong><small>求职入口</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://www.linkedin.com"><strong>LinkedIn</strong><small>职业与海外岗位</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://www.feishu.cn"><strong>飞书</strong><small>协作与文档</small></a>
-            <a class="tool" target="_blank" rel="noopener" href="https://mail.google.com"><strong>Gmail</strong><small>邮箱</small></a>
-          </div></div>
-          <div class="group"><div class="group-title">💼 CAREER · 职业工作台</div><div class="tools">
-            <a class="tool" href="career/jobs.html"><strong>岗位雷达</strong><small>查看岗位卡片</small></a>
-            <a class="tool" href="career/companies.html"><strong>公司库</strong><small>查看公司档案</small></a>
-            <a class="tool" href="career/resume.html"><strong>简历库</strong><small>查看简历版本</small></a>
-            <a class="tool" href="career/interview.html"><strong>面试库</strong><small>查看面试记录页面</small></a>
-            <a class="tool" href="career/apply.html"><strong>投递记录</strong><small>查看投递记录页面</small></a>
-            <a class="tool" href="career/cases.html"><strong>案例库</strong><small>查看职业案例</small></a>
-          </div></div>
-        </div>
+    <section class="view" id="entertainment" data-view="entertainment" aria-labelledby="entertainmentTitle" hidden inert>
+      <div class="mode-head"><a class="back-link" href="#home">← 返回首页</a><h1 id="entertainmentTitle" tabindex="-1">娱乐模式</h1></div>
+      <div class="category-grid">
+        <section class="panel"><h2>视频</h2><div class="tools">
+          <a class="tool" target="_blank" rel="noopener noreferrer" href="https://www.youtube.com"><strong>YouTube</strong><small>视频</small></a>
+          <a class="tool" target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com"><strong>TikTok</strong><small>短视频</small></a>
+        </div></section>
+        <section class="panel"><h2>影视</h2><p class="muted">暂无影视入口。</p></section>
+        <section class="panel"><h2>社交</h2><div class="tools">
+          <a class="tool" target="_blank" rel="noopener noreferrer" href="https://x.com"><strong>X</strong><small>动态与讨论</small></a>
+          <a class="tool" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com"><strong>Instagram</strong><small>图片与动态</small></a>
+        </div></section>
+        <section class="panel"><h2>音乐</h2><p class="muted">暂无音乐入口。</p></section>
+        <section class="panel"><h2>兴趣</h2><p class="muted">暂无兴趣入口。</p></section>
       </div>
     </section>
 
-    <section id="journal">
-      <div class="wrap">
-        <div class="section-head"><div><div class="section-kicker">CAPTURE & REVIEW</div><h2>日记与复盘</h2><p>只记录，不做弹窗提醒；内容输入后自动保存到当前浏览器。</p></div></div>
+    <section class="view" id="journal" data-view="journal" aria-labelledby="journalTitle" hidden inert>
+      <div class="mode-head"><a class="back-link" href="#home">← 返回首页</a><h1 id="journalTitle" tabindex="-1">记录</h1></div>
+      <p class="view-intro">日记和复盘沿用当前内容，输入后自动保存；不会按日期自动归档。</p>
         <div class="journal-grid">
           <article class="journal-card">
-            <h3>今日日记</h3><p id="journalDate">记录今天发生的事、想法或决定。</p>
-            <textarea aria-label="今日日记" id="journalText" placeholder="今天发生了什么？有什么值得记住？"></textarea>
+            <h3>日记</h3><p id="journalDate">记录今天发生的事、想法或决定。</p>
+            <textarea aria-label="日记" id="journalText" placeholder="今天发生了什么？有什么值得记住？"></textarea>
             <div class="journal-actions"><span class="save-state" id="journalState">尚未输入</span><button class="btn small" data-clear="journal">清空</button></div>
           </article>
           <article class="journal-card">
@@ -168,13 +133,13 @@
             <div class="journal-actions"><span class="save-state" id="reviewState">尚未输入</span><button class="btn small" data-clear="review">清空</button></div>
           </article>
         </div>
-      </div>
+      <section class="panel history-note"><h2>历史记录</h2><p class="muted">当前仅保存一份日记和一份复盘，暂无按日历史记录。</p></section>
     </section>
 
-    <section id="data">
-      <div class="wrap">
+    <section class="view" id="data" data-view="data" aria-labelledby="dataTitle" hidden inert>
+      <div class="mode-head"><a class="back-link" href="#home">← 返回首页</a><h1 id="dataTitle" tabindex="-1">数据</h1></div>
         <div class="panel">
-          <div class="panel-head"><div><h3>个人数据备份</h3><div class="panel-sub">导出 / 导入 Suze OS 当前浏览器里的求职数据、日记和复盘</div></div></div>
+          <div class="panel-head"><div><h3>个人数据备份</h3><div class="panel-sub">导出 / 导入当前浏览器中的手动求职计数、日记和复盘</div></div></div>
           <div class="data-actions">
             <button class="btn" id="exportData">导出 JSON 备份</button>
             <label class="btn ghost" for="importFile">导入 JSON 备份</label>
@@ -182,34 +147,31 @@
             <button class="btn ghost" id="resetAllData">清空本地数据</button>
           </div>
           <p id="dataStatus" class="data-status" role="status" aria-live="polite"></p>
-          <div class="storage-note">数据保存在当前浏览器，暂不支持跨设备同步。仅支持 V3 备份；旧版数据仍保留，旧版备份请在旧版页面恢复。</div>
+          <div class="storage-note">JSON 备份和清空操作仅包含手动求职计数、日记与复盘，不包含 Job Radar 岗位及面试明细。仅支持 V3 备份；旧版数据保留，旧版备份请在旧版页面恢复。</div>
         </div>
         <div class="panel cloud-state-panel" id="cloudStatePanel" aria-labelledby="cloudStateTitle" aria-busy="false" hidden>
-          <div class="panel-head"><div><h3 id="cloudStateTitle">云端读写测试</h3><div class="panel-sub">仅手动保存与读取预览，本地数据仍为主数据源。</div></div></div>
+          <div class="panel-head"><div><h3 id="cloudStateTitle">云端备份</h3><div class="panel-sub">仅手动保存与读取预览，本地数据仍为主数据源。</div></div></div>
           <div class="data-actions">
             <button class="btn" id="checkCloudState" type="button">查看云端状态</button>
-            <button class="btn" id="uploadCloudState" type="button">上传当前本地数据</button>
+            <button class="btn" id="uploadCloudState" type="button">备份到云端</button>
             <button class="btn ghost" id="previewCloudState" type="button">从云端读取预览</button>
           </div>
           <p class="cloud-existence">是否存在云端数据：<strong id="cloudStateExists">尚未读取</strong></p>
           <dl class="cloud-state-preview" id="cloudStatePreview" hidden>
-            <div><dt>schema_version</dt><dd id="cloudSchemaVersion">—</dd></div>
-            <div><dt>updated_at</dt><dd id="cloudUpdatedAt">—</dd></div>
-            <div><dt>core_state</dt><dd id="cloudCoreState">—</dd></div>
-            <div><dt>job_radar_state</dt><dd id="cloudJobRadarState">—</dd></div>
+            <div><dt>备份格式版本</dt><dd id="cloudSchemaVersion">—</dd></div>
+            <div><dt>备份更新时间</dt><dd id="cloudUpdatedAt">—</dd></div>
+            <div><dt>计数与记录</dt><dd id="cloudCoreState">—</dd></div>
+            <div><dt>岗位与面试</dt><dd id="cloudJobRadarState">—</dd></div>
           </dl>
           <p class="data-status" id="cloudStateStatus" role="status" aria-live="polite"></p>
           <div class="storage-note">读取只展示预览，不覆盖本地数据。上传当前已保存的本地数据，并替换当前账户的云端快照；未保存的表单内容不包含在内。本地没有已保存的模块数据，或缺少云端已有的模块数据时，将取消上传。</div>
         </div>
-      </div>
     </section>
   </main>
-
-  <footer class="footer-note">© 2026 Suze OS V3.0 · Personal Operating System</footer>
-
+  <footer class="footer-note">Suze Flow</footer>
   <dialog class="workflow-dialog" id="workflowDialog" aria-labelledby="workflowTitle">
     <h3 id="workflowTitle">启动工作流</h3>
-    <p>选择工具单独打开，或一次打开全部工具。</p>
+    <p>按求职用途选择工具，或一次打开全部工具。</p>
     <div class="workflow-links" id="workflowLinks"></div>
     <p id="workflowStatus" role="status"></p>
     <div class="workflow-actions">
@@ -220,19 +182,20 @@
 
   <dialog class="auth-dialog" id="authDialog" aria-labelledby="authTitle" aria-describedby="authDescription">
     <div class="auth-dialog-head">
-      <h3 id="authTitle">登录 Suze OS</h3>
+      <h3 id="authTitle">登录 Suze Flow</h3>
       <button class="btn small ghost" id="closeAuth" type="button">关闭</button>
     </div>
     <p id="authDescription">使用已有账户登录。数据仍以本地为主，云端操作需手动触发。</p>
     <form id="authForm" aria-busy="false" novalidate>
-      <label for="authEmailInput">Email</label>
+      <label for="authEmailInput">邮箱</label>
       <input id="authEmailInput" name="email" type="email" autocomplete="username" placeholder="you@example.com" required autofocus />
-      <label for="authPasswordInput">Password</label>
+      <label for="authPasswordInput">密码</label>
       <input id="authPasswordInput" name="password" type="password" autocomplete="current-password" required />
       <p class="auth-error" id="authError" role="alert" aria-live="assertive"></p>
       <button class="btn primary" id="authSubmit" type="submit">登录</button>
     </form>
   </dialog>
+
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>
